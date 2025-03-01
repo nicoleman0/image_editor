@@ -1,0 +1,14 @@
+from PIL import Image, ImageEnhance, ImageFilter
+import os
+
+path = './images'
+pathOut = '/editedImages'
+
+for filename in os.listdir(path):
+    img = Image.open(f"{path}/{filename}")
+
+    edit = img.filter(ImageFilter.SHARPEN).convert('L') # sharpens image and rotates it
+
+    clean_name = os.path.splitext(filename)[0] # isolates name of file without extension
+
+    edit.save(f".{pathOut}/{clean_name}_edited.jpg")
